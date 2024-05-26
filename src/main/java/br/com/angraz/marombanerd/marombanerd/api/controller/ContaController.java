@@ -32,6 +32,13 @@ public class ContaController {
                .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("contas/loginUser/{usuario}/{senha}")
+    public ResponseEntity<Conta> loginPorUsuario(@PathVariable String usuario, @PathVariable String senha){
+        return contaRepository.findByUsuarioAndSenha(usuario, senha)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/contas")
     @ResponseStatus(HttpStatus.CREATED)
     public Conta addconta(@RequestBody Conta conta){

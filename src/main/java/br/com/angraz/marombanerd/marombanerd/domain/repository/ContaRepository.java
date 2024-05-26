@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface ContaRepository extends JpaRepository <Conta, Long> {
 
     Optional<Conta> findByEmail(String email);
+    Optional<Conta> findByUsuarioAndSenha(String usuario, String senha);
     List<Conta> findByUsuarioContaining(String usuario);
     Conta findByEmailAndUsuario(String email, String usuario);
 }
