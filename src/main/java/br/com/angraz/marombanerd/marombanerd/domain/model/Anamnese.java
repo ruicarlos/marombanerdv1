@@ -27,6 +27,7 @@ public class Anamnese {
     private double peso;
     private String dtnascimento;
     private String create_at;
+    private int tmb;
 
 
 }

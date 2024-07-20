@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface AnamneseRepository extends JpaRepository<Anamnese, Long> {
 
-    List<Anamnese> findByConta(int conta);
+    List<Anamnese> findAllByConta(int conta);
+
 
 
 }
