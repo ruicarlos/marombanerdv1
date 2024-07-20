@@ -25,4 +25,5 @@ public class Perfil {
     private int ponto;
     private int trofeus;
     private String tipoconta;
+    private int tmb;
 }
