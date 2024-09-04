@@ -1,16 +1,13 @@
 package br.com.angraz.marombanerd.marombanerd.domain.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 //@Getter
-@Setter
+//@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Conta {
@@ -40,6 +37,7 @@ public class Conta {
         this.email = email;
     }
 
+    @OneToOne
     public String getUsuario() {
         return usuario;
     }
