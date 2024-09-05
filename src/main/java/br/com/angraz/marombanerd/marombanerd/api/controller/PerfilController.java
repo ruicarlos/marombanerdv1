@@ -40,6 +40,10 @@ public class PerfilController {
         return perfilRepository.save(perfil);
     }
 
+    @PatchMapping("/perfil")
+    public ResponseEntity<Perfil> updatePerfil(@RequestBody Perfil perfil){
+        return ResponseEntity.ok(perfilRepository.save(perfil));
+    }
 
 
 
