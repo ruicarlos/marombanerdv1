@@ -1,5 +1,6 @@
 package br.com.angraz.marombanerd.marombanerd.api.controller;
 
+import br.com.angraz.marombanerd.marombanerd.domain.exception.DomainExceptions;
 import br.com.angraz.marombanerd.marombanerd.domain.model.Perfil;
 import br.com.angraz.marombanerd.marombanerd.domain.repository.MetasRepository;
 import br.com.angraz.marombanerd.marombanerd.domain.repository.PerfilRepository;
@@ -41,10 +42,37 @@ public class PerfilController {
     }
 
     @PatchMapping("/perfil")
-    public ResponseEntity<Perfil> updatePerfil(@RequestBody Perfil perfil){
-        return ResponseEntity.ok(perfilRepository.save(perfil));
-    }
+    public ResponseEntity<Perfil> updatePerfil(@RequestBody Perfil perfilAtualizado) {
+        // Busca o perfil existente no banco de dados pelo ID
+        Perfil perfilExistente = perfilRepository.findById(perfilAtualizado.getId())
+                .orElseThrow(() -> new DomainExceptions("Perfil não encontrado"));
 
+        // Atualiza apenas os campos que não são nulos
+        if (perfilAtualizado.getNome() != null) {
+            perfilExistente.setNome(perfilAtualizado.getNome());
+        }
+        if (perfilAtualizado.getFoto() != null) {
+            perfilExistente.setFoto(perfilAtualizado.getFoto());
+        }
+        if (perfilAtualizado.getPonto() != 0) {
+            perfilExistente.setPonto(perfilAtualizado.getPonto());
+        }
+        if (perfilAtualizado.getTrofeus() != 0) {
+            perfilExistente.setTrofeus(perfilAtualizado.getTrofeus());
+        }
+        if (perfilAtualizado.getTipoconta() != null) {
+            perfilExistente.setTipoconta(perfilAtualizado.getTipoconta());
+        }
+        if (perfilAtualizado.getTmb() != 0) {
+            perfilExistente.setTmb(perfilAtualizado.getTmb());
+        }
+        if (perfilAtualizado.getConta() != 0) {
+            perfilExistente.setConta(perfilAtualizado.getConta());
+        }
+        // Salva a entidade atualizada
+        Perfil perfilSalvo = perfilRepository.save(perfilExistente);
+        return ResponseEntity.ok(perfilSalvo);
+    }
 
 
 }
